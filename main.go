@@ -121,6 +121,9 @@ func main() {
 	// 数据看板
 	go model.UpdateQuotaData()
 
+	// 稳线公开状态页探活采样（fork 新增）
+	go controller.StartStablelineMonitor()
+
 	if os.Getenv("CHANNEL_UPDATE_FREQUENCY") != "" {
 		frequency, err := strconv.Atoi(os.Getenv("CHANNEL_UPDATE_FREQUENCY"))
 		if err != nil {
